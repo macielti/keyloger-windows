@@ -4,6 +4,17 @@ import facebook
 
 linhas=[]
 
+
+def set_up():
+    """Esta função verifica se as pastas saida e analisar foram criadas, caso
+        não existam elas serão criadas automaticamente"""
+    lista_de_setup=os.listdir()
+    if 'saida' not in lista_de_setup:
+        os.system('mkdir saida')
+    if 'analisar' not in lista_de_setup:
+        os.system('mkdir analisar')
+        
+
 def analisar_log(arquivo):
     
     arq= open(arquivo, 'r', encoding = "ISO-8859-1")
@@ -18,6 +29,10 @@ def pesq_arq_analis():
         print('\t'+arquivo)
         
 ################################################################################
+
+#Verificar e criar as pastas necessárias para rodar o programa
+set_up()
+
 opc=input('Que tipo de conta você deseja pesquisar?\n\n\t1 para Facebook\n\t\
 2 para Gmail\n')
 
