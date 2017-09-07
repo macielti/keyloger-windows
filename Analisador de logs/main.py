@@ -20,7 +20,7 @@ def analisar_log(arquivo):
     
     lines=[]
     
-    arq= open(arquivo, 'r', encoding = "ISO-8859-1")
+    arq= open('analisar/'+arquivo, 'r', encoding = "ISO-8859-1")
     texto= arq.readlines()
     for linha in texto:
         lines.append(linha)
@@ -30,6 +30,9 @@ def analisar_log(arquivo):
 
         
 ################################################################################
+
+set_up()
+
 #Esta lista recebe as linhas dos logs, cada elemento é uma lista
 lista_composta=[]
 
@@ -51,58 +54,19 @@ for arquivo in os.listdir('analisar'):
     
     #Adiciono o nome do arquivos na ordem que foi analisado, o nome do arquivo
     #está sem o .txt 
-    ordem_dos_arq.appdend(arquivo[:-4])
+    ordem_dos_arq.append(arquivo[:-4])
 
-#list_lines_log recebe cada elemento da lista composta, que é uma outra lista
-#com as linhas de cada arquivona pasta de analise
-for list_lines_log in lista_composta:
-    for 
+# i é um contador que  indexalisa as duas listas para que possamos trabalhar os
+#elementos delas paralelamente
+for i in range(len(ordem_dos_arq)):
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-os.system('clear')
-
-#Verificar e criar as pastas necessárias para rodar o programa
-set_up()
-
-opc=input('Que tipo de conta você deseja pesquisar?\n\n\t1 para Facebook\n\t\
-2 para Gmail\n\t3 para SIGAA')
-
-os.system('clear')
-
-logs= os.listdir('analisar')
-
-for log in logs:
+    #a cada ciclo do for cada elemento da lista_composta e ordem_dos_arq  são
+    #armazenadas respesctivamente nas variáveis da linha 65 e 66
+    lines = lista_composta[i]
+    arq_do_ciclo = ordem_dos_arq[i]
     
-    analisar_log('analisar/'+log)
+    facebook.facebook(lines, arq_do_ciclo)
     
-    if opc =='1':
-        facebook.facebook(linhas, logs)
-
-    if opc=='2':
-        gmail.gmail(linhas, logs)
-
-    if opc=='3':
-        sigaa.sigaa(linhas, logs)
+    gmail.gmail(lines, arq_do_ciclo)
+    
+    sigaa.sigaa(lines, arq_do_ciclo)
