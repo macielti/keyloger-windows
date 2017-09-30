@@ -18,5 +18,6 @@ def facebook(lista_de_linhas, arquivo):
         
         contador +=1
     
-    for l in escrever:
-        os.system('echo " '+l+' " >> saida/'+arquivo+'__facebooks.txt')
+    with open(caminho_do_arquivo_saida, 'w', encoding = "ISO-8859-1" ) as face:
+        for line_ in escrever:
+            face.writelines(line_+'\n')
